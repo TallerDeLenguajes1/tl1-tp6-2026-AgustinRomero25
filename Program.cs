@@ -1,29 +1,51 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using System.Linq.Expressions;
 
-int a;
-int b;
-a = 10;
-b = a;
+Console.WriteLine("------------------- EJERCICIO 2 -----------------------\n");
+Console.WriteLine("------------------- CALCULADORA V1 -----------------------\n");
 
-Console.WriteLine("valor de a:"+a);
-Console.WriteLine("valor de b:"+b);
+float num1;
+float num2;
+int eleccion;
 
-Console.WriteLine("------------------- EJERCICIO 1 ----------------\n");
-Console.WriteLine("Ingrese un numero mayor a 0: ");
-string entry = Console.ReadLine();
-int num1;
-bool stringaint = int.TryParse(entry, out num1);
-Console.WriteLine($"El numero ingresado es: {num1}");
+Console.WriteLine("Ingrese el primer numero: ");
+string s1 = Console.ReadLine();
+bool parse1 = float.TryParse(s1, out num1); 
 
-if (num1 > 0)
+Console.WriteLine("Ingrese el segundo numero: ");
+string s2 = Console.ReadLine();
+bool parse2 = float.TryParse(s2, out num2);
+
+Console.WriteLine("¿Qué operacion desea realizar?\n1.suma\n2.resta\n3.división\n4.multiplicación\n");
+string s3 = Console.ReadLine();
+bool parseleccion = int.TryParse(s3, out eleccion);
+
+float resultado;
+
+if (eleccion == 1)
 {
-    int resto = 0;
-    int invertido = 0;
-    while (num1 != 0)
+    resultado = num1 + num2;   
+    Console.WriteLine($"----------------- Resultado: {resultado} --------------------\n"); 
+} else if (eleccion == 2)
+{
+    resultado = num1 - num2;
+    Console.WriteLine($"----------------- Resultado: {resultado} --------------------\n");
+
+} else if (eleccion == 3)
+{
+    if(num2 != 0)
     {
-        resto = num1 % 10;
-        invertido = (invertido * 10) + resto;
-        num1 = num1 / 10;
+        resultado = num1 / num2;
+        Console.WriteLine($"----------------- Resultado: {resultado} --------------------\n");
+
+    } else
+    {
+        Console.WriteLine("No se puede dividir en 0, intente nuevamente.\n");
     }
-    Console.WriteLine($"El numero invertido es: {invertido}");
+} else if (eleccion == 4)
+{
+    resultado = num1 * num2;
+    Console.WriteLine($"----------------- Resultado: {resultado} --------------------\n");
+} else
+{
+    Console.WriteLine("Ingrese un numero valido.\n");
 }
