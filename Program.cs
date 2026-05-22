@@ -6,18 +6,40 @@ Console.WriteLine("------------------- CALCULADORA V1 -----------------------\n"
 float num1;
 float num2;
 int eleccion;
+bool SecCheck;
 
-Console.WriteLine("Ingrese el primer numero: ");
-string s1 = Console.ReadLine();
-bool parse1 = float.TryParse(s1, out num1); 
+do
+{
+    Console.WriteLine("Ingrese el primer numero: ");
+    string s1 = Console.ReadLine();
+    SecCheck = float.TryParse(s1, out num1);
+    if(!SecCheck)
+    {
+        Console.WriteLine("Eso no es un numero. \nPor favor, ingrese un numero valido.\n");
+    } 
+} while (!SecCheck);
 
-Console.WriteLine("Ingrese el segundo numero: ");
-string s2 = Console.ReadLine();
-bool parse2 = float.TryParse(s2, out num2);
+do
+{
+    Console.WriteLine("Ingrese el segundo numero: ");
+    string s2 = Console.ReadLine();
+    SecCheck = float.TryParse(s2, out num2);
+    if(!SecCheck)
+    {
+        Console.WriteLine("Eso no es un numero. \nPor favor, ingrese un numero valido.\n");
+    } 
+} while(!SecCheck);
 
+do
+{
 Console.WriteLine("¿Qué operacion desea realizar?\n1.suma\n2.resta\n3.división\n4.multiplicación\n");
 string s3 = Console.ReadLine();
-bool parseleccion = int.TryParse(s3, out eleccion);
+SecCheck = int.TryParse(s3, out eleccion) && eleccion >= 1 && eleccion <= 4;
+if(!SecCheck)
+    {
+        Console.WriteLine("Opcion no valida. \nPor favor, ingrese un numero del 1 al 4.\n");
+    }
+} while(!SecCheck);
 
 float resultado;
 
@@ -45,7 +67,4 @@ if (eleccion == 1)
 {
     resultado = num1 * num2;
     Console.WriteLine($"----------------- Resultado: {resultado} --------------------\n");
-} else
-{
-    Console.WriteLine("Ingrese un numero valido.\n");
 }
